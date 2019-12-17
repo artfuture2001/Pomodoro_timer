@@ -2,6 +2,12 @@ import time
 from os import system, name
 
 
+def ready_clear():
+    print("If ready, press Enter")
+    input()
+    clear()
+
+
 def clear():
     # for windows
     if name == 'nt':
@@ -9,11 +15,6 @@ def clear():
     # for mac and linux(here, os.name is 'posix')
     else:
         _ = system('clear')
-
-
-def ready():
-    print("If ready, press Enter")
-    input()
 
 
 def Timer(seconds):
@@ -25,13 +26,17 @@ def Timer(seconds):
         seconds -= 1
 
 
+def poms_done(poms):
+    print(f"Pomodoros done: {poms}")
+
+
 total_pomodoros = 0
-task = 25
-longbreak = 25
-shortbreak = 5
+task = 25 * 60
+longbreak = 25 * 60
+shortbreak = 5 * 60
 while True:
     clear()
-    print(f"Pomodoros done: {total_pomodoros}")
+    poms_done(total_pomodoros)
     starter = input("Start Pomodoro?(Y/N): ")
     clear()
     if starter == "Y":
@@ -41,27 +46,25 @@ while True:
         Timer(task)
         clear()
         if total_pomodoros % 4 == 0:
-            print(f"Pomodoros done: {total_pomodoros}" +
-                  "\nYou have deserved long break!)")
-            ready()
-            clear()
-            print(f"Pomodoros done: {total_pomodoros}")
+            poms_done(total_pomodoros)
+            print("You have deserved long break!)")
+            ready_clear()
+            poms_done(total_pomodoros)
             print("*LONG BREAK*")
             Timer(longbreak)
             clear()
             continue
         else:
-            print(f"Pomodoros done: {total_pomodoros}" +
-                  "\nTime for little break)")
-            ready()
-            clear()
-            print(f"Pomodoros done: {total_pomodoros}")
+            poms_done(total_pomodoros)
+            print("Time for little break)")
+            ready_clear()
+            poms_done(total_pomodoros)
             print("*SHORT BREAK*")
             Timer(shortbreak)
             clear()
             continue
     elif starter == "N":
-        print(f"Pomodoros done: {total_pomodoros}")
+        poms_done(total_pomodoros)
         print("Bye")
         break
     else:
