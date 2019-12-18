@@ -3,21 +3,23 @@ from os import system, name
 
 
 def ready_clear():
+    # for less code
     print("If ready, press Enter")
     input()
     clear()
 
 
 def clear():
-    # for windows
+    # windows
     if name == 'nt':
         _ = system('cls')
-    # for mac and linux(here, os.name is 'posix')
+    # mac and linux name is posix
     else:
         _ = system('clear')
 
 
 def Timer(seconds):
+    # simple live timer from youtube tutorial
     while seconds > 0:
         m, s = divmod(seconds, 60)
         time_left = f"{str(m).zfill(2)} : {str(s).zfill(2)}"
@@ -28,10 +30,12 @@ def Timer(seconds):
 
 
 def poms_done(poms):
+    # for less prints
     print(f"Pomodoros done: {poms}")
 
 
-total_pomodoros = 0
+total_pomodoros = 0  # pomodoros counter
+# minutes * 60 =  seconds
 task = 25 * 60
 longbreak = 25 * 60
 shortbreak = 5 * 60
@@ -45,6 +49,7 @@ while True:
         print(f"Pomodoro {total_pomodoros}")
         print("*TASK*")
         Timer(task)
+        # according to method, after 4th pomodoro, break must be 25 mins
         if total_pomodoros % 4 == 0:
             poms_done(total_pomodoros)
             print("You have deserved long break!)")
