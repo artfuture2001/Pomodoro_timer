@@ -24,6 +24,7 @@ def Timer(seconds):
         print(time_left + "\r", end="")
         time.sleep(1)
         seconds -= 1
+        clear()
 
 
 def poms_done(poms):
@@ -44,7 +45,6 @@ while True:
         print(f"Pomodoro {total_pomodoros}")
         print("*TASK*")
         Timer(task)
-        clear()
         if total_pomodoros % 4 == 0:
             poms_done(total_pomodoros)
             print("You have deserved long break!)")
@@ -52,7 +52,6 @@ while True:
             poms_done(total_pomodoros)
             print("*LONG BREAK*")
             Timer(longbreak)
-            clear()
             continue
         else:
             poms_done(total_pomodoros)
@@ -61,7 +60,6 @@ while True:
             poms_done(total_pomodoros)
             print("*SHORT BREAK*")
             Timer(shortbreak)
-            clear()
             continue
     elif starter == "N":
         poms_done(total_pomodoros)
